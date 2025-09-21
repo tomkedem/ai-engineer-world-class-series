@@ -5,6 +5,19 @@ def count_sentences(text: str) -> int:
     sentences = re.split(r'[.!?]', text)
     return len([s for s in sentences if s.strip()])
 
+def summarize_text(text: str) -> None:
+    """
+    מדפיסה סיכום טקסט: מספר מילים, משפטים ותווים.
+    """
+    num_words = len([w for w in text.split() if w.strip()])
+    num_sentences = count_sentences(text)
+    num_chars = len(text)
+    print(f"מספר מילים: {num_words}")
+    print(f"מספר משפטים: {num_sentences}")
+    print(f"מספר תווים: {num_chars}")
+
+
+
 if __name__ == "__main__":
     sample = (
     "היום יום יפה! מחר נצא לטיול. האם תבוא איתנו? "
@@ -19,3 +32,5 @@ if __name__ == "__main__":
     print("המשפטים בטקסט:")
     for i, sentence in enumerate(sentences, 1):
         print(f"{i}. {sentence}")
+
+    summarize_text(sample)    
