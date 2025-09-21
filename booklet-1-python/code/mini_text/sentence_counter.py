@@ -16,7 +16,18 @@ def summarize_text(text: str) -> None:
     print(f"מספר משפטים: {num_sentences}")
     print(f"מספר תווים: {num_chars}")
 
-
+def summarize_file(file_path: str) -> None:
+    """
+    קורא טקסט מקובץ ומסכם אותו.
+    """
+    try:
+        with open(file_path, encoding="utf-8") as f:
+            text = f.read()
+        summarize_text(text)
+    except FileNotFoundError:
+        print(f"שגיאה: הקובץ '{file_path}' לא נמצא.")
+    except Exception as e:
+        print(f"שגיאה בקריאת הקובץ: {e}")
 
 if __name__ == "__main__":
     sample = (
@@ -34,3 +45,7 @@ if __name__ == "__main__":
         print(f"{i}. {sentence}")
 
     summarize_text(sample)    
+
+      # תרגיל 3: קריאה מקובץ חיצוני
+    print("\nסיכום קובץ input.txt:")
+    summarize_file("input.txt")
