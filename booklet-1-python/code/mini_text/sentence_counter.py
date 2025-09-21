@@ -1,4 +1,6 @@
 import re
+from core import safe_write_json
+
 
 def count_sentences(text: str) -> int:
     # מחלק את הטקסט לפי סימני סוף משפט, ומסנן תוצאות ריקות
@@ -16,19 +18,33 @@ def summarize_text(text: str) -> None:
     print(f"מספר משפטים: {num_sentences}")
     print(f"מספר תווים: {num_chars}")
 
-def summarize_file(file_path: str) -> None:
+def summarize_my_text(text: str) -> dict:
     """
-    קורא טקסט מקובץ ומסכם אותו.
+    מחזירה סיכום טקסט: מספר מילים, משפטים ותווים.
+    """
+    num_words = len([w for w in text.split() if w.strip()])
+    num_sentences = count_sentences(text)
+    num_chars = len(text)
+    return {
+        "num_words": num_words,
+        "num_sentences": num_sentences,
+        "num_chars": num_chars
+    }
+def summarize_file(file_path: str) -> dict:
+    """
+    קורא טקסט מקובץ ומחזיר סיכום.
     """
     try:
         with open(file_path, encoding="utf-8") as f:
             text = f.read()
-        summarize_text(text)
+        return summarize_my_text(text)
     except FileNotFoundError:
         print(f"שגיאה: הקובץ '{file_path}' לא נמצא.")
+        return None
     except Exception as e:
         print(f"שגיאה בקריאת הקובץ: {e}")
-
+        return None
+    
 if __name__ == "__main__":
     sample = (
     "היום יום יפה! מחר נצא לטיול. האם תבוא איתנו? "
@@ -48,4 +64,8 @@ if __name__ == "__main__":
 
       # תרגיל 3: קריאה מקובץ חיצוני
     print("\nסיכום קובץ input.txt:")
-    summarize_file("input.txt")
+    file_summary = summarize_file("input.txt")
+    if file_summary:
+       
+        # תרגיל 4: שמירת סיכום ל-JSON באמצעות safe_write_json מהקובץ core.py
+        safe_write_json(file_summary, "output/summary.json")
