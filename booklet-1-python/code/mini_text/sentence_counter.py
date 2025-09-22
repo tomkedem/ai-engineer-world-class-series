@@ -52,20 +52,21 @@ if __name__ == "__main__":
     "בסוף היום נחזור הביתה."
 )
 
+    sum_sentences =count_sentences(sample)
+    print(f"מספר המשפטים בטקסט: {sum_sentences}")
+    # sentences = [s.strip() for s in re.split(r'[.!?]', sample) if s.strip()]
+    # num_sentences = len(sentences)
+    # print(f"מספר המשפטים בטקסט: {num_sentences}")
+    # print("המשפטים בטקסט:")
+    # for i, sentence in enumerate(sentences, 1):
+    #     print(f"{i}. {sentence}")
 
-    sentences = [s.strip() for s in re.split(r'[.!?]', sample) if s.strip()]
-    num_sentences = len(sentences)
-    print(f"מספר המשפטים בטקסט: {num_sentences}")
-    print("המשפטים בטקסט:")
-    for i, sentence in enumerate(sentences, 1):
-        print(f"{i}. {sentence}")
+    # summarize_text(sample)    
 
-    summarize_text(sample)    
-
-      # תרגיל 3: קריאה מקובץ חיצוני
-    print("\nסיכום קובץ input.txt:")
-    file_summary = summarize_file("input.txt")
-    if file_summary:
+    #   # תרגיל 3: קריאה מקובץ חיצוני
+    # print("\nסיכום קובץ input.txt:")
+    # file_summary = summarize_file("input.txt")
+    # if file_summary:
        
-        # תרגיל 4: שמירת סיכום ל-JSON באמצעות safe_write_json מהקובץ core.py
-        safe_write_json(file_summary, "output/summary.json")
+    #     # תרגיל 4: שמירת סיכום ל-JSON באמצעות safe_write_json מהקובץ core.py
+    #     safe_write_json(file_summary, "output/summary.json")
