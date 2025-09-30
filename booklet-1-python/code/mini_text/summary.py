@@ -4,13 +4,11 @@ from __future__ import annotations
 from typing import Dict
 
 def clean_text(text: str) -> str:
-    """
-    מנקה טקסט: מסיר רווחים מיותרים וסימני פיסוק (. , ! ?).
+   """
+    מנקה טקסט: מסיר רווחים מיותרים.
     עבור טקסט באנגלית ניתן להוסיף .lower() כדי לאחד בין אותיות גדולות לקטנות.
-    """
-    for mark in [".", ",", "!", "?"]:
-        text = text.replace(mark, "")
-    return " ".join(text.split())
+   """
+   return " ".join(text.split())
 
 def count_sentences(text: str) -> int:
     """
